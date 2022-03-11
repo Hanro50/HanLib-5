@@ -1,0 +1,6 @@
+//Testing if String encoding and decoding is working!
+strtest:"Hello world"
+//Testing if interger encoding and decoding is working!
+inttest:44
+//Tests if the complex object encoding works
+cmplx test:{"test":"Hellow\n world!!"}
