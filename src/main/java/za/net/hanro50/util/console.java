@@ -1,16 +1,33 @@
 package za.net.hanro50.util;
 
 public class console {
+    public static boolean debug = false;
+
     public static void out(Object... out) {
         for (Object object : out) {
             System.out.println(object.toString());
         }
     }
 
+    public static void log(Object... out) {
+        if (debug)
+            for (Object object : out) {
+                System.out.println(object.toString());
+            }
+    }
+
     public static void err(Object... err) {
         for (Object object : err) {
             System.out.println(object.toString());
         }
+
+    }
+
+    public static void wrn(Object... err) {
+        if (debug)
+            for (Object object : err) {
+                System.out.println(object.toString());
+            }
 
     }
 

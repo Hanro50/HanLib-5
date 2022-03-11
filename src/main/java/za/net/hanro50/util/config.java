@@ -65,13 +65,9 @@ public abstract class config extends writable {
     }
 
     public config init() {
-
         for (Field f : this.getClass().getDeclaredFields()) {
-
             f.setAccessible(true);
             option option = f.getAnnotation(option.class);
-
-            console.out(f.getName());
             if (option != null)
                 settings.put(option.name(), new constr(option, f, this));
 
@@ -136,10 +132,7 @@ public abstract class config extends writable {
 
     public config save() throws IOException {
         this.clear();
-        console.out(settings.size());
-
         settings.forEach((k, v) -> {
-
             try {
                 if (v.field.get(this) != null) {
                     String disc = "//" + v.option.comment().replaceAll("\n", "//\n");

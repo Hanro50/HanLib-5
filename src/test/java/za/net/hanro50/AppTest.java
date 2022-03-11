@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import za.net.hanro50.util.config;
+import za.net.hanro50.util.console;
 
 /**
  * Unit test for simple App.
@@ -20,7 +21,6 @@ public class AppTest {
         public configTest(File file) {
             super(file);
         }
-
         @option(name = "inttest", comment = "Testing if interger encoding and decoding is working!")
         private int inttest = 44;
         @option(name = "strtest", comment = "Testing if String encoding and decoding is working!")
@@ -29,7 +29,6 @@ public class AppTest {
         private test test = new test();
 
     }
-
     /**
      * Should update the config folder
      * 
@@ -37,6 +36,7 @@ public class AppTest {
      */
     @Test
     public void testConfigHandlerSaver() throws IOException {
+        console.debug =true;
         configTest t = (configTest) new configTest(new File("./util/test.txt").getAbsoluteFile()).init();
         t.save();
     }
@@ -48,6 +48,7 @@ public class AppTest {
      */
     @Test
     public void testConfigHandlerReader() throws IOException {
+        console.debug =true;
         configTest t = (configTest) new configTest(new File("./util/test.txt").getAbsoluteFile()).init();
         System.out.print(t.inttest);
 
