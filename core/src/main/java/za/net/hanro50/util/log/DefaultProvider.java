@@ -1,8 +1,5 @@
 package za.net.hanro50.util.log;
 
-import java.net.URISyntaxException;
-import java.net.URL;
-
 class DefaultProvider implements Provider {
 
     @Override
