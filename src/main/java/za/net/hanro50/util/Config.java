@@ -13,18 +13,18 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public abstract class config extends writable {
+public abstract class Config extends Writable {
     private Map<String, constr> settings = new HashMap<>();
     private static final Gson gson = new GsonBuilder().setLenient().create();
     private static final String lineBreak = "</br>";
 
     private static class constr {
-        public final option option;
+        public final Option option;
         public final Field field;
         private boolean ticked = false;
-        private config parent;
+        private Config parent;
 
-        public constr(option option, Field field, config parent) {
+        public constr(Option option, Field field, Config parent) {
             this.option = option;
             this.field = field;
             this.parent = parent;
@@ -64,13 +64,13 @@ public abstract class config extends writable {
 
     }
 
-    public config init() {
+    public Config init() {
         for (Field f : this.getClass().getDeclaredFields()) {
-            f.setAccessible(true);
-            option option = f.getAnnotation(option.class);
-            if (option != null)
+            Option option = f.getAnnotation(Option.class);
+            if (option != null) {
+                f.setAccessible(true);
                 settings.put(option.name(), new constr(option, f, this));
-
+            }
         }
         if (this.getFile().exists()) {
             try {
@@ -84,13 +84,13 @@ public abstract class config extends writable {
                                 ext.setValue(prop[1]);
                             }
                         } catch (IllegalArgumentException | IllegalAccessException e1) {
-                            console.err("Could not read property in from file ");
+                            Console.err("Could not read property in from file ");
                             e1.printStackTrace();
                         }
                     }
                 });
             } catch (IOException e) {
-                console.err("Could not configure file");
+                Console.err("Could not configure file");
                 e.printStackTrace();
             }
         }
@@ -105,32 +105,32 @@ public abstract class config extends writable {
                         this.write(v.option.name() + ":" + gson.toJson(v.field.get(this)).replaceAll("\n", lineBreak));
                 }
             } catch (IOException | IllegalArgumentException | IllegalAccessException e) {
-                console.err("Could not write to file");
+                Console.err("Could not write to file");
                 e.printStackTrace();
             }
         });
         return this;
     }
 
-    public config(File file) {
+    public Config(File file) {
         super(file);
         settings.forEach((k, v) -> {
             try {
                 String disc = "//" + v.option.comment().replaceAll("\n", "//\n");
                 this.write(disc);
                 if (v.field.getType().isPrimitive())
-                    this.write(v.option.name() + ":" + v.field.get(this).toString().replaceAll("\n",lineBreak ));
+                    this.write(v.option.name() + ":" + v.field.get(this).toString().replaceAll("\n", lineBreak));
                 else
-                    this.write(v.option.name() + ":" + gson.toJson(v.field.get(this)).replaceAll("\n",lineBreak ));
+                    this.write(v.option.name() + ":" + gson.toJson(v.field.get(this)).replaceAll("\n", lineBreak));
             } catch (IOException | IllegalArgumentException | IllegalAccessException e) {
-                console.err("Could not write to file");
+                Console.err("Could not write to file");
                 e.printStackTrace();
             }
         });
 
     }
 
-    public config save() throws IOException {
+    public Config save() throws IOException {
         this.clear();
         settings.forEach((k, v) -> {
             try {
@@ -143,7 +143,7 @@ public abstract class config extends writable {
                         this.write(v.option.name() + ":" + gson.toJson(v.field.get(this)));
                 }
             } catch (IOException | IllegalArgumentException | IllegalAccessException e) {
-                console.err("Could not write to file");
+                Console.err("Could not write to file");
                 e.printStackTrace();
             }
         });
@@ -152,7 +152,7 @@ public abstract class config extends writable {
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.FIELD)
-    protected @interface option {
+    protected @interface Option {
         /** The name assigned to the option value */
         String name();
 

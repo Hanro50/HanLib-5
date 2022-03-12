@@ -7,10 +7,10 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-public class writable {
+public class Writable {
     private final File file;
 
-    public writable(File file) {
+    public Writable(File file) {
         this.file = file;
     }
 
