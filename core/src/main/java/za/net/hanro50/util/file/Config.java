@@ -1,4 +1,4 @@
-package za.net.hanro50.util;
+package za.net.hanro50.util.file;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,8 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import za.net.hanro50.util.log.Console;
 
 public abstract class Config extends Writable {
     private Map<String, constr> settings = new HashMap<>();

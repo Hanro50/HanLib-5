@@ -1,4 +1,4 @@
-package za.net.hanro50.util;
+package za.net.hanro50.util.file;
 
 import java.io.File;
 import java.io.FileWriter;

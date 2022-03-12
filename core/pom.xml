@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>za.net.hanro50</groupId>
+    <artifactId>util</artifactId>
+    <version>1.3</version>
+  </parent>
+  <groupId>za.net.hanro50.util</groupId>
+  <artifactId>core</artifactId>
+  <version>1.3</version>
+  <name>core</name>
+  <url>http://maven.apache.org</url>
+</project>

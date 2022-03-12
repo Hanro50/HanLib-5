@@ -1,9 +1,0 @@
-{
-  "inttest": 44,
-  "strtest": "Hello world",
-  "test": {},
-  "arrtest": [
-    "Hello world",
-    "t4"
-  ]
-}

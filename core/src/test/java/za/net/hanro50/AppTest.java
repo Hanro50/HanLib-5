@@ -7,9 +7,9 @@ import com.google.gson.annotations.Expose;
 
 import org.junit.Test;
 
-import za.net.hanro50.util.Config;
-import za.net.hanro50.util.Console;
-import za.net.hanro50.util.Datafile;
+import za.net.hanro50.util.file.Config;
+import za.net.hanro50.util.file.Datafile;
+import za.net.hanro50.util.log.Console;
 
 /**
  * Unit test for simple App.
@@ -59,7 +59,7 @@ public class AppTest {
     @Test
     public void testConfigHandlerSaver() throws IOException {
         Console.debug = true;
-        configTest t = (configTest) new configTest(new File("./util/test.txt").getAbsoluteFile()).init();
+        configTest t = (configTest) new configTest(new File("./testFiles/test.txt").getAbsoluteFile()).init();
         t.save();
     }
 
@@ -71,7 +71,7 @@ public class AppTest {
     @Test
     public void testConfigHandlerReader() throws IOException {
         Console.debug = true;
-        configTest t = (configTest) new configTest(new File("./util/test.txt").getAbsoluteFile()).init();
+        configTest t = (configTest) new configTest(new File("./testFiles/test.txt").getAbsoluteFile()).init();
         System.out.print(t.inttest);
 
     }
@@ -84,9 +84,30 @@ public class AppTest {
     @Test
     public void testDataFile() throws IOException {
         Console.debug = true;
-        dataTest t = (dataTest) new dataTest(new File("./util/data.json").getAbsoluteFile()).init();
+        dataTest t = (dataTest) new dataTest(new File("./testFiles/data.json").getAbsoluteFile()).init();
         t.save();
         System.out.print(t.inttest);
 
+    }
+
+    @Test
+    public void testLog() throws IOException {
+
+        Console.crt("Expected failure");
+        Console.out("Hello world");
+        Console.err("Hello world");
+
+        Console.log("Hello world");
+        Console.wrn("Hello world");
+
+        Console.debug = true;
+
+        Console.log("Hello world");
+        Console.wrn("Hello world");
+
+        Console.out(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+        Console.out(10, 20, 30, 40, 50, 60, 70, 80, 90, 0);
+
+        Console.trc(new IOException("Expected failure"));
     }
 }

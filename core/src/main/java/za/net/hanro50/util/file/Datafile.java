@@ -1,4 +1,4 @@
-package za.net.hanro50.util;
+package za.net.hanro50.util.file;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +7,8 @@ import java.lang.reflect.Field;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
+
+import za.net.hanro50.util.log.Console;
 
 public abstract class Datafile extends Writable {
     private static final Gson encoder = new GsonBuilder().setPrettyPrinting().setLenient()
