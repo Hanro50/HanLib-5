@@ -38,9 +38,13 @@ public abstract class Datafile extends Writable {
         return this;
     };
 
+    public String toString(){
+        return encoder.toJson(this);
+    }
+
     public Datafile save() throws IOException {
         this.clear();
-        this.write(encoder.toJson(this));
+        this.write(this.toString());
         return this;
     }
 }
