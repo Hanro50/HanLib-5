@@ -8,6 +8,9 @@ class DefaultProvider implements Provider {
             System.out.println(
                     "[info][" + metdata.clazzName + ":" + metdata.line + "] " + object);
         }
+        String file = metdata.getFile();
+        if (file.length() > 0)
+            System.out.println("[info][debug][file-link] " + metdata.getFile());
     }
 
     @Override
@@ -16,6 +19,9 @@ class DefaultProvider implements Provider {
             System.err.println(
                     "[error][" + metdata.codeSource + "," + metdata.clazzName + ":" + metdata.line + "] " + object);
         }
+        String file = metdata.getFile();
+        if (file.length() > 0)
+            System.err.println("[info][debug][file-link] " + metdata.getFile());
     }
 
     @Override
@@ -29,26 +35,14 @@ class DefaultProvider implements Provider {
         Thread.currentThread().getStackTrace();
         Thread.getAllStackTraces().forEach((k, v) -> {
             System.err.println("[CRT][Trace] THREAD :" + k.getName() + "#" + k.getId());
-            for (StackTraceElement trace : v) {
-                System.err.println(
-                        "[CRT][Trace] " + trace.getMethodName() + "/" + trace.getClassName() + "(" + trace.getFileName()
-                                + ":"
-                                + trace.getLineNumber() + ")");
-            }
+            trace("[CRT][Trace] ", v);
         });
 
         System.err.println("[!!!CRITICAL ERROR!!!] PLEASE REPORT CRASH LOG.");
     }
 
-    @Override
-    public void trc(Meta metdata, Throwable err, Object... trc) {
-        for (Object object : trc) {
-            System.err.println(
-                    "[trace][" + metdata.codeSource + "," + metdata.clazzName + ":" + metdata.line + "] " + object);
-        }
-        System.err.println("[trace][" + metdata.codeSource + "," + metdata.clazzName + ":" + metdata.line + "][header] "
-                + err.getMessage());
-        for (StackTraceElement trace : err.getStackTrace()) {
+    private void trace(String tag, StackTraceElement[] stack) {
+        for (StackTraceElement trace : stack) {
             try {
                 Class<?> clazz = Class.forName(trace.getClassName());
                 String file = null;
@@ -65,13 +59,13 @@ class DefaultProvider implements Provider {
 
                 }
                 if (file != null) {
-                    System.err.println("[trace] " + trace.getClassName() + trace.getClassName() + "(" +
+                    System.err.println(tag + trace.getClassName() + trace.getClassName() + "(" +
                             trace.getFileName() + ":"
                             + trace.getLineNumber() + ") #vscode://file" + file + ".java:"
                             + trace.getLineNumber() + ":0");
                 } else {
                     System.err.println(
-                            "[trace] " + trace.getClassName() + "/" + trace.getClassName() + "(" +
+                            tag + trace.getClassName() + "/" + trace.getClassName() + "(" +
                                     trace.getFileName() + ":"
                                     + trace.getLineNumber() + ")");
                 }
@@ -88,4 +82,15 @@ class DefaultProvider implements Provider {
 
     }
 
+    @Override
+    public void trc(Meta metdata, Throwable err, Object... trc) {
+        for (Object object : trc) {
+            System.err.println(
+                    "[trace][" + metdata.codeSource + "," + metdata.clazzName + ":" + metdata.line + "] " + object);
+        }
+        System.err.println("[trace][" + metdata.codeSource + "," + metdata.clazzName + ":" + metdata.line + "][header] "
+                + err.getMessage());
+
+        trace("[trace] ", err.getStackTrace());
+    }
 }

@@ -2,10 +2,15 @@ package za.net.hanro50.util.log;
 
 @LogAvoid
 public final class Meta {
-    public final StackTraceElement lor;
+    public final StackTraceElement trace;
     public final String codeSource;
     public final String clazzName;
     public final int line;
+    private String file;
+
+    public String getFile() {
+        return this.file != null ? this.file : "";
+    }
 
     private static StackTraceElement LastObject() {
         StackTraceElement resultcall = Thread.currentThread().getStackTrace()[1];
@@ -32,9 +37,29 @@ public final class Meta {
     }
 
     Meta() {
-        this.lor = LastObject();
-        this.line = lor.getLineNumber();
-        this.clazzName = lor.getClassName();
-        this.codeSource = lor.getFileName();
+        this.trace = LastObject();
+        this.line = trace.getLineNumber();
+        this.clazzName = trace.getClassName();
+        this.codeSource = trace.getFileName();
+        if (Console.debug) {
+            try {
+                Class<?> clazz = Class.forName(trace.getClassName());
+                this.file = null;
+
+                this.file = clazz.getProtectionDomain().getCodeSource().getLocation().getFile();
+                if (this.file.contains("target/"))
+                    this.file = file.substring(0, file.indexOf("target/")) + "src/"
+                            + (this.file.indexOf("test-classes") > file.indexOf("target/") ? "test/java/"
+                                    : "main/java/")
+                            + trace.getClassName().replace(".", "/");
+                else
+                    this.file = null;
+
+                if (this.file != null) {
+                    this.file = "#vscode://file" + file + ".java:" + trace.getLineNumber() + ":0";
+                }
+            } catch (ClassNotFoundException | NullPointerException e) {
+            }
+        }
     }
 }

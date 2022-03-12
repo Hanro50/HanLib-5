@@ -18,12 +18,9 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>[4.13.1,)</version>
+      <scope>Test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.9.0</version>
-    </dependency>
+   
   </dependencies>
   <build>
 
@@ -32,7 +29,11 @@
     <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
     <outputDirectory>${basedir}/target/classes</outputDirectory>
     <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
-
+    <resources>
+      <resource>
+        <directory>${basedir}/src/resources</directory>
+      </resource>
+    </resources>
     <pluginManagement>
       <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
