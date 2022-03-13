@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>za.net.hanro50</groupId>
   <artifactId>util</artifactId>
-  <version>${revision}</version>
+  <version>1.6.1</version>
   <name>util</name>
   <packaging>pom</packaging>
   <!-- FIXME change it to the project's website -->
@@ -12,7 +12,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <revision>1.6</revision>
+   
   </properties>
   <dependencies>
     <dependency>

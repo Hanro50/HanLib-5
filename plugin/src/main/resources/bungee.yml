@@ -1,4 +1,4 @@
 name: HanLib
 main: za.net.hanro50.util.Bungee
-version: ${revision}
+version: ${project.version}
 author: Hanro50

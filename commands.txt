@@ -1,0 +1,1 @@
+To change the version number. Use `mvn versions:set -DnewVersion=<version>` to change it;

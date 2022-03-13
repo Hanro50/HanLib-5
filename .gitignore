@@ -24,3 +24,5 @@ hs_err_pid*
 target
 
 testFiles
+dependency-reduced-pom.xml
+pom.xml.versionsBackup
