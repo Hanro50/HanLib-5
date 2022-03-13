@@ -1,6 +1,6 @@
 name: HanLib
 main: za.net.hanro50.util.Spigot
-version: 1.0
+version: ${revision}
 api-version: 1.14
 load: STARTUP
 author: Hanro50
