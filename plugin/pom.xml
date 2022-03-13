@@ -43,4 +43,39 @@
       </exclusions>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        
+        <configuration>
+          <finalName>Hanlib-${project.version}</finalName>
+          <filters>
+              <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                      <exclude>META-INF/*</exclude>
+                  </excludes>
+              </filter>
+          </filters>
+          <artifactSet>
+              <excludes>
+                  <exclude>com.google.code.*</exclude>
+              </excludes>
+          </artifactSet>
+      </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

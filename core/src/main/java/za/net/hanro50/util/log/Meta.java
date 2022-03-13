@@ -1,7 +1,7 @@
 package za.net.hanro50.util.log;
 
 @LogAvoid
-public final class Meta {
+final class Meta {
     public final StackTraceElement trace;
     public final String codeSource;
     public final String clazzName;
@@ -36,8 +36,12 @@ public final class Meta {
         return resultcall;
     }
 
-    Meta() {
-        this.trace = LastObject();
+    public Meta() {
+        this(LastObject());
+    }
+
+    public Meta(StackTraceElement trace) {
+        this.trace = trace;
         this.line = trace.getLineNumber();
         this.clazzName = trace.getClassName();
         this.codeSource = trace.getFileName();

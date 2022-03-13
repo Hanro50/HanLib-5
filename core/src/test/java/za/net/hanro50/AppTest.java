@@ -25,7 +25,7 @@ public class AppTest {
             super(file);
         }
 
-        @Option(name = "inttest", comment = "Testing if interger encoding and decoding is working!")
+        @Option(name = "inttest", comment = "Testing if interger encoding and decoding is working!\nDouble linez")
         private int inttest = 44;
         @Option(name = "strtest", comment = "Testing if String encoding and decoding is working!")
         private String strtest = "Hello world";
