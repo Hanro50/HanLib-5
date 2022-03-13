@@ -12,7 +12,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <project.version>1.5</project.version>
+    <project.version>1.5.1</project.version>
   </properties>
   <dependencies>
     <dependency>
