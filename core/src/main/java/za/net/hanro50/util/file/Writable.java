@@ -31,9 +31,7 @@ public class Writable {
     }
 
     public void clear() throws IOException {
-        if (this.file.exists()) {
-            this.file.delete();
-        }
+        if (this.file.exists()) this.file.delete();
     }
 
     public List<String> read() throws IOException {

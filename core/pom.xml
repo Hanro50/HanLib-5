@@ -4,11 +4,10 @@
   <parent>
     <groupId>za.net.hanro50</groupId>
     <artifactId>util</artifactId>
-    <version>${project.version}</version>
+    <version>${revision}</version>
   </parent>
   <groupId>za.net.hanro50.util</groupId>
   <artifactId>core</artifactId>
-  <version>${project.version}</version>
   <name>core</name>
   <url>http://maven.apache.org</url>
   <dependencies>

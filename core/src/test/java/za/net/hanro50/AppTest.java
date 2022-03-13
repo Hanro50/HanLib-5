@@ -15,7 +15,6 @@ import za.net.hanro50.util.log.Console;
  * Unit test for simple App.
  */
 public class AppTest {
-
     public class test {
         public String test = "Hellow\n world!!";
     }

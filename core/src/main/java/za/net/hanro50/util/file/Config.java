@@ -10,7 +10,6 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -117,25 +116,6 @@ public abstract class Config extends Writable {
             }
         }
         check(v -> !v.isTicked() && v.option.required());
-        /*
-         * settings.forEach((k, v) -> {
-         * try {
-         * if (!v.isTicked() && v.option.required()) {
-         * String disc = "//" + v.option.comment().replaceAll("\n", "\n//");
-         * this.write(disc);
-         * if (v.field.getType().isPrimitive())
-         * this.write(v.option.name() + ":" +
-         * v.field.get(this).toString().replaceAll("\n", lineBreak));
-         * else
-         * this.write(v.option.name() + ":" +
-         * gson.toJson(v.field.get(this)).replaceAll("\n", lineBreak));
-         * }
-         * } catch (IOException | IllegalArgumentException | IllegalAccessException e) {
-         * Console.err("Could not write to file");
-         * e.printStackTrace();
-         * }
-         * });
-         */
         return this;
     }
 
@@ -152,23 +132,6 @@ public abstract class Config extends Writable {
                 return false;
             }
         });
-        /*
-         * settings.forEach((k, v) -> {
-         * try {
-         * if (v.field.get(this) != null) {
-         * String disc = "//" + v.option.comment().replaceAll("\n", "\n//");
-         * this.write(disc);
-         * if (v.field.getType().isPrimitive())
-         * this.write(v.option.name() + ":" + v.field.get(this).toString());
-         * else
-         * this.write(v.option.name() + ":" + gson.toJson(v.field.get(this)));
-         * }
-         * } catch (IOException | IllegalArgumentException | IllegalAccessException e) {
-         * Console.err("Could not write to file");
-         * e.printStackTrace();
-         * }
-         * });
-         */
         return this;
     }
 

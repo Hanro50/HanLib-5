@@ -73,13 +73,7 @@ class DefaultProvider implements Provider {
 
                 e.printStackTrace();
             }
-
-            // System.err.println(
-            // "[trace] " + trace.getClassName() + "/" + trace.getClassName() + "(" +
-            // trace.getFileName() + ":"
-            // + trace.getLineNumber() + ")");
         }
-
     }
 
     @Override

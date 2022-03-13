@@ -7,11 +7,9 @@ final class Meta {
     public final String clazzName;
     public final int line;
     private String file;
-
     public String getFile() {
         return this.file != null ? this.file : "";
     }
-
     private static StackTraceElement LastObject() {
         StackTraceElement resultcall = Thread.currentThread().getStackTrace()[1];
         LogAvoid LastAnnon = Meta.class.getAnnotation(LogAvoid.class);
@@ -35,11 +33,9 @@ final class Meta {
         }
         return resultcall;
     }
-
     public Meta() {
         this(LastObject());
     }
-
     public Meta(StackTraceElement trace) {
         this.trace = trace;
         this.line = trace.getLineNumber();
