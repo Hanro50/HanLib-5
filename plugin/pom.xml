@@ -8,7 +8,6 @@
   </parent>
   <groupId>za.net.hanro50.util</groupId>
   <artifactId>plugin</artifactId>
-
   <name>plugin</name>
   <url>http://maven.apache.org</url>
   <repositories>
@@ -28,12 +27,6 @@
       <artifactId>spigot-api</artifactId>
       <version>1.18.2-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>za.net.hanro50.util</groupId>
@@ -70,7 +63,6 @@
     </resources>
     <plugins>
       <plugin>
-
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.2.4</version>
@@ -82,7 +74,6 @@
             </goals>
           </execution>
         </executions>
-
         <configuration>
           <finalName>Hanlib-${project.version}</finalName>
           <filters>
