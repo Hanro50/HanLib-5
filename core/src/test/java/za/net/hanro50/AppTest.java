@@ -22,6 +22,9 @@ public class AppTest {
     public class configTest extends Config {
         public configTest(File file) {
             super(file);
+            this.setOnInit(()->{
+                Console.log("HELLOW WORLD!");
+            });
         }
 
         @Option(name = "inttest", comment = "Testing if interger encoding and decoding is working!\nDouble linez")

@@ -4,7 +4,7 @@
   <parent>
     <groupId>za.net.hanro50</groupId>
     <artifactId>util</artifactId>
-    <version>1.6.1</version>
+    <version>1.7</version>
   </parent>
   <groupId>za.net.hanro50.util</groupId>
   <artifactId>plugin</artifactId>
@@ -31,7 +31,7 @@
     <dependency>
       <groupId>za.net.hanro50.util</groupId>
       <artifactId>core</artifactId>
-      <version>1.6.1</version>
+      <version>1.7</version>
       <exclusions>
         <exclusion>
           <groupId>com.google.code.gson</groupId>

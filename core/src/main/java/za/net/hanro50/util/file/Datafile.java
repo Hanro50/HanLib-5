@@ -10,7 +10,7 @@ import com.google.gson.annotations.Expose;
 
 import za.net.hanro50.util.log.Console;
 
-public abstract class Datafile extends Writable {
+public abstract class Datafile extends Savable<Datafile> {
     private static final Gson encoder = new GsonBuilder().setPrettyPrinting().setLenient()
             .excludeFieldsWithoutExposeAnnotation().serializeNulls().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").create();
 
@@ -18,7 +18,12 @@ public abstract class Datafile extends Writable {
         super(file);
     }
 
-    public Datafile init() throws IOException {
+    public String toString() {
+        return encoder.toJson(this);
+    }
+
+    @Override
+    protected Datafile initialize() throws IOException {
         String file = "";
         for (String i : this.read())
             file += i + "\n";
@@ -40,10 +45,7 @@ public abstract class Datafile extends Writable {
         return this;
     };
 
-    public String toString(){
-        return encoder.toJson(this);
-    }
-
+    @Override
     public Datafile save() throws IOException {
         this.clear();
         this.write(this.toString());

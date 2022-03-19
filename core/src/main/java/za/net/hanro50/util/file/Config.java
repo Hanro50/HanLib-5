@@ -16,7 +16,7 @@ import com.google.gson.GsonBuilder;
 
 import za.net.hanro50.util.log.Console;
 
-public abstract class Config extends Writable {
+public abstract class Config extends Savable<Config> {
     private Map<String, constr> settings = new HashMap<>();
     private static final Gson gson = new GsonBuilder().setLenient().create();
     private static final String lineBreak = "</br>";
@@ -85,7 +85,25 @@ public abstract class Config extends Writable {
         });
     }
 
-    public Config init() {
+    public Config(File file) {
+        super(file);
+    }
+
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
+    protected @interface Option {
+        /** The name assigned to the option value */
+        String name();
+
+        /** The comment assigned to it */
+        String comment() default "";
+
+        /** Writes the default value if non are detected */
+        boolean required() default false;
+    }
+
+    @Override
+    protected Config initialize() {
         for (Field f : this.getClass().getDeclaredFields()) {
             Option option = f.getAnnotation(Option.class);
             if (option != null) {
@@ -119,10 +137,7 @@ public abstract class Config extends Writable {
         return this;
     }
 
-    public Config(File file) {
-        super(file);
-    }
-
+    @Override
     public Config save() throws IOException {
         this.clear();
         check(v -> {
@@ -135,16 +150,4 @@ public abstract class Config extends Writable {
         return this;
     }
 
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.FIELD)
-    protected @interface Option {
-        /** The name assigned to the option value */
-        String name();
-
-        /** The comment assigned to it */
-        String comment() default "";
-
-        /** Writes the default value if non are detected */
-        boolean required() default false;
-    }
 }

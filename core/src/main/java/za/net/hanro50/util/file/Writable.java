@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Writable {
+public abstract class Writable {
     private final File file;
 
     public Writable(File file) {
@@ -25,13 +25,14 @@ public class Writable {
         }
         FileWriter writer = new FileWriter(this.file, true);
         for (Object line : lines) {
-            writer.write(line.toString()+"\n");
+            writer.write(line.toString() + "\n");
         }
         writer.close();
     }
 
     public void clear() throws IOException {
-        if (this.file.exists()) this.file.delete();
+        if (this.file.exists())
+            this.file.delete();
     }
 
     public List<String> read() throws IOException {
