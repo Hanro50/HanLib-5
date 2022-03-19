@@ -7,6 +7,7 @@ public abstract class Savable<T> extends Writable {
     private Runnable onInitialization = () -> {
     };
 
+    /** This will run savely after the object has been initialized. */
     protected final void setOnInit(Runnable onInit) {
         if (onInit != null)
             this.onInitialization = onInit;
